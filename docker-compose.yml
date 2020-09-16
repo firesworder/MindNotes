@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+    volumes:
+    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    - ./backend/public:/var/www/public
+
+  backend:
+    build: backend
+    volumes:
+      - ./backend/public:/var/www/public
+      - ./backend/src:/var/www/src
+      - ./backend/vendor:/var/www/vendor
+      - ./backend/composer.json:/var/www/composer.json
+
+  mysql:
+    build: mysql
+    volumes:
+      - ./mysql/bd:/var/lib/mysql
