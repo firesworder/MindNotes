@@ -14,10 +14,11 @@ services:
   backend:
     build: backend
     volumes:
-      - ./backend/public:/var/www/public
-      - ./backend/src:/var/www/src
-      - ./backend/vendor:/var/www/vendor
-      - ./backend/composer.json:/var/www/composer.json
+      - ./backend:/var/www
+#      - ./backend/public:/var/www/public
+#      - ./backend/src:/var/www/src
+#      - ./backend/vendor:/var/www/vendor
+#      - ./backend/composer.json:/var/www/composer.json
 
   mysql:
     build: mysql
