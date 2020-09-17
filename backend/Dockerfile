@@ -10,6 +10,5 @@ WORKDIR /var/www
 #composer.lock
 #COPY composer.json ./
 #RUN composer install
-ENV PROJECT_DIR=/var/www
 #COPY public .
 CMD ["php-fpm"]
