@@ -1,0 +1,51 @@
+#А если у меня еще методов прибавится, файл будет состоять из 150+ строчек? Охуеть как удобно.
+#Мб можно этот routes.yaml по частям аккуратно собрать в Routing/YAMLFileLoader
+
+#thought API
+create_thought:
+  path: /thought/create/
+  defaults: { _controller: 'App\Controller\Thought::createThought' }
+  methods: [ POST ]
+
+update_thought:
+  path: /thought/update/
+  defaults: { _controller: 'App\Controller\Thought::updateThought' }
+  methods: [ PUT ]
+
+delete_thought:
+  path: /thought/delete/
+  defaults: { _controller: 'App\Controller\Thought::deleteThought' }
+  methods: [ DELETE ]
+
+#thought Content
+thought_detail:
+  path: /thought/{thoughtId}/
+  defaults: { _controller: 'App\Controller\Thought::getThoughtDetail' }
+  methods: [ GET ]
+
+thought_list:
+  path: /thought/
+  defaults: { _controller: 'App\Controller\Thought::getThoughtList' }
+  methods: [ GET ]
+
+#tag API
+create_tag:
+  path: /tag/create/
+  defaults: { _controller: 'App\Controller\Tag::createTag' }
+  methods: [ POST ]
+
+update_tag:
+  path: /tag/update/
+  defaults: { _controller: 'App\Controller\Tag::updateTag' }
+  methods: [ PUT ]
+# Для глагола Delete как правильнее - ждать id в теле или в query? Мне было бы удобнее в теле все кидать.
+delete_tag:
+  path: /tag/delete/
+  defaults: { _controller: 'App\Controller\Tag::deleteTag' }
+  methods: [ DELETE ]
+
+#tag Content
+tag_list:
+  path: /tag/
+  defaults: { _controller: 'App\Controller\Tag::getTagList' }
+  methods: [ GET ]
