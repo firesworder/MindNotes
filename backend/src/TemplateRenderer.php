@@ -3,6 +3,8 @@
 
 namespace App;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * В такой реализации я вижу возможности для гибкого управления шаблонами. Можно будет и аккуратно в хедер подключить,
  * что нибудь, и в футер скрипт какой нибудь. Ну и собственно управлять шаблоном будет удобно.
@@ -11,6 +13,14 @@ namespace App;
  */
 class TemplateRenderer
 {
+    const DEFAULT_TEMPLATE_DIR = '/templates/';
+
+    private $templateFilepath;
+
+    private $templateParams;
+
+    private $templateName;
+
 //    TODO: описать файл с шаблонами и необходимыми параметрами, там же и алиасы можно описать
     /**
      * TemplateRenderer constructor.
@@ -19,8 +29,16 @@ class TemplateRenderer
      */
     public function __construct(string $templateName, array $params)
     {
-        // тут мы подгружаем список yaml с шаблонами
-        // проверяем, что передано все, что нужно для отрисовки шаблона
+        $templateConfigList = Yaml::parseFile(getenv('PROJECT_DIR') . 'templates.yaml');
+        $currentTemplateConfig = $templateConfigList[$templateName];
+        if(!$currentTemplateConfig) {
+            throw new \Exception('Передано неизвестное имя шаблона, проверь передаваемое название шаблона или 
+            файл config/templates.yaml', 500);
+        }
+
+        $this->templateName = $templateName;
+        $this->templateFilepath = $currentTemplateConfig['path'] ?? self::DEFAULT_TEMPLATE_DIR . "$templateName.php";
+        $this->templateParams = $currentTemplateConfig['params'];
     }
 
     /**
