@@ -67,10 +67,7 @@ class TemplateRenderer
 
         $this->replaceVariableStubs();
 
-        // подключить header
-        // загрузить нужный шаблон
-        // заменить заглушки на значения переменных
-        // подключить футер
+        echo $this->pageContent;
     }
 
     /**
