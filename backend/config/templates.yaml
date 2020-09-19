@@ -3,4 +3,4 @@
 main_page:
   params:
     title: 'Главная страница'
-  path: '/templates/content/main_page.php'
+  path: '/templates/main_page/template.php'
