@@ -37,7 +37,7 @@ class TemplateRenderer
         }
 
         $this->templateName = $templateName;
-        $this->templateFilepath = $currentTemplateConfig['path'] ?? self::DEFAULT_TEMPLATE_DIR . "$templateName.php";
+        $this->templateFilepath = $currentTemplateConfig['path'] ?? self::DEFAULT_TEMPLATE_DIR . $templateName . "/template.php";
         $this->templateParams = $currentTemplateConfig['params'];
 
         // проверяем, что переданы нужные параметры для отрисовки шаблона
