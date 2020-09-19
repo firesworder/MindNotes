@@ -78,9 +78,19 @@ class TemplateRenderer
         return true;
     }
 
-    private function getHeader()
+    /**
+     * @return string содержимое файла /templates/header.php
+     * @throws \Exception Если файл не найден
+     */
+    private function getHeader() : string
     {
+        $headerFilepath = getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'header.php';
+        $header = file_get_contents($headerFilepath);
+        if(!$header) {
+            throw new \Exception('Не найден файл хедера, проверь ' . $headerFilepath, 404);
+        }
 
+        return $header;
     }
 
     private function getFooter()
