@@ -93,9 +93,19 @@ class TemplateRenderer
         return $header;
     }
 
-    private function getFooter()
+    /**
+     * @return string содержимое файла /templates/footer.php
+     * @throws \Exception Если файл не найден
+     */
+    private function getFooter() : string
     {
+        $footerFilepath = getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'footer.php';
+        $footer = file_get_contents($footerFilepath);
+        if(!$footer) {
+            throw new \Exception('Не найден файл футера, проверь ' . $footerFilepath, 404);
+        }
 
+        return $footer;
     }
 
     private function getTemplate()
