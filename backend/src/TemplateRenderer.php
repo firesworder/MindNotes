@@ -52,8 +52,18 @@ class TemplateRenderer
     /**
      * @return string html-код, стандартный вывод
      */
-    public function render() : string
+    public function render()
     {
+        // todo: может статься так, что переменные шаблона будут относиться и к хедеру и к футеру, мб правильнее будет заполнять переменные ВСЕЙ страницы в initTemplate
+        // todo: переименовать initTemplate чем то более подходящим под "заполнить переменные шаблона значениями"
+        ob_start();
+        $this->getHeader();
+        $this->getTemplate();
+        $this->getFooter();
+        $pageContent = ob_get_contents();
+        ob_end_clean();
+
+
         // подключить header
         // загрузить нужный шаблон
         // заменить заглушки на значения переменных
@@ -78,52 +88,19 @@ class TemplateRenderer
         return true;
     }
 
-    /**
-     * @return string содержимое файла /templates/header.php
-     * @throws \Exception Если файл не найден
-     */
     private function getHeader() : string
     {
-        $headerFilepath = getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'header.php';
-        $header = file_get_contents($headerFilepath);
-        if(!$header) {
-            throw new \Exception('Не найден файл хедера, проверь ' . $headerFilepath, 404);
-        }
-
-        return $header;
+        include getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'header.php';
     }
 
-    /**
-     * @return string содержимое файла /templates/footer.php
-     * @throws \Exception Если файл не найден
-     */
     private function getFooter() : string
     {
-        $footerFilepath = getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'footer.php';
-        $footer = file_get_contents($footerFilepath);
-        if(!$footer) {
-            throw new \Exception('Не найден файл футера, проверь ' . $footerFilepath, 404);
-        }
-
-        return $footer;
+        include getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'footer.php';
     }
 
-    /**
-     * @return string контент main части шаблона
-     * @throws \Exception Если файл не найден
-     */
-    private function getTemplate(): string
+    private function getTemplate()
     {
-        $templateFilepath = getenv('PROJECT_DIR') . $this->templateFilepath;
-        $templateContent = file_get_contents($templateFilepath);
-
-        echo $templateContent;
-
-        if(!$templateContent) {
-            throw new \Exception('Не найден файл шаблона, проверь ' . $templateFilepath, 404);
-        }
-
-        return $templateContent;
+        include getenv('PROJECT_DIR') . $this->templateFilepath;
     }
 
     private function initTemlate()
