@@ -108,9 +108,22 @@ class TemplateRenderer
         return $footer;
     }
 
-    private function getTemplate()
+    /**
+     * @return string контент main части шаблона
+     * @throws \Exception Если файл не найден
+     */
+    private function getTemplate(): string
     {
+        $templateFilepath = getenv('PROJECT_DIR') . $this->templateFilepath;
+        $templateContent = file_get_contents($templateFilepath);
 
+        echo $templateContent;
+
+        if(!$templateContent) {
+            throw new \Exception('Не найден файл шаблона, проверь ' . $templateFilepath, 404);
+        }
+
+        return $templateContent;
     }
 
     private function initTemlate()
