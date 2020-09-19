@@ -14,6 +14,7 @@ use Symfony\Component\Yaml\Yaml;
 class TemplateRenderer
 {
     const DEFAULT_TEMPLATE_DIR = '/templates/';
+    const DEFAULT_CONFIG_FILEPATH = '/config/templates.yaml';
 
     private $templateFilepath;
 
@@ -29,7 +30,7 @@ class TemplateRenderer
      */
     public function __construct(string $templateName, array $params)
     {
-        $templateConfigList = Yaml::parseFile(getenv('PROJECT_DIR') . 'templates.yaml');
+        $templateConfigList = Yaml::parseFile(getenv('PROJECT_DIR') . self::DEFAULT_CONFIG_FILEPATH);
         $currentTemplateConfig = $templateConfigList[$templateName];
         if(!$currentTemplateConfig) {
             throw new \Exception('Передано неизвестное имя шаблона, проверь передаваемое название шаблона или 
