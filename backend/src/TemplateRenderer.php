@@ -90,12 +90,12 @@ class TemplateRenderer
         return true;
     }
 
-    private function getHeader() : string
+    private function getHeader()
     {
         include getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'header.php';
     }
 
-    private function getFooter() : string
+    private function getFooter()
     {
         include getenv('PROJECT_DIR') . self::DEFAULT_TEMPLATE_DIR . 'footer.php';
     }
