@@ -26,7 +26,7 @@ class TemplateRenderer
     /**
      * @return string html-код, стандартный вывод
      */
-    public function getPageContent() : string
+    public function render() : string
     {
         // подключить header
         // загрузить нужный шаблон
