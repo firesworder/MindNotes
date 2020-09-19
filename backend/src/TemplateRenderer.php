@@ -65,6 +65,7 @@ class TemplateRenderer
         $this->pageContent = ob_get_contents();
         ob_end_clean();
 
+        $this->replaceVariableStubs();
 
         // подключить header
         // загрузить нужный шаблон
@@ -105,8 +106,15 @@ class TemplateRenderer
         include getenv('PROJECT_DIR') . $this->templateFilepath;
     }
 
-    private function initTemlate()
+    /**
+     * Заменяет параметры вида {{paramName}} на значение соотв-го ключа paramName
+     */
+    private function replaceVariableStubs()
     {
-
+        foreach($this->templateParams as $paramName => $value) {
+            // Пока использую str_replace как самый быстрый. Если постоянно будет проблема рода
+            // {{title}, {{ title }}, {{ title}} - придется перейти на preg_replace. Или не косячить хд
+            $this->pageContent = str_replace('{{'. $paramName . '}}', $value, $this->pageContent);
+        }
     }
 }
