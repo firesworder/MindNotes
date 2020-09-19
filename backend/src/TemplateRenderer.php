@@ -42,7 +42,9 @@ class TemplateRenderer
 
         // проверяем, что переданы нужные параметры для отрисовки шаблона
         if($this->isParamsValid($params)) {
-            //записываем переданные параметры из конструктора в templateParams
+            foreach ($this->templateParams as $key => $valueFromConfig) {
+                $this->templateParams[$key] = $params[$key] ? $params[$key] : $valueFromConfig;
+            }
         };
     }
 
