@@ -39,6 +39,11 @@ class TemplateRenderer
         $this->templateName = $templateName;
         $this->templateFilepath = $currentTemplateConfig['path'] ?? self::DEFAULT_TEMPLATE_DIR . "$templateName.php";
         $this->templateParams = $currentTemplateConfig['params'];
+
+        // проверяем, что переданы нужные параметры для отрисовки шаблона
+        if($this->isParamsValid($params)) {
+            //записываем переданные параметры из конструктора в templateParams
+        };
     }
 
     /**
@@ -52,9 +57,22 @@ class TemplateRenderer
         // подключить футер
     }
 
-    private function isParamsValid() : bool
+    /**
+     * @param array $params Параметры переданные в конструктор объекта TemplateRenderer
+     * @return bool Валидность/не валидность параметров
+     * @throws \Exception Если один из параметров шаблона остался без значения - бросаю исключение
+     */
+    private function isParamsValid(array $params): bool
     {
+        foreach($this->templateParams as $key => $valueFromConfig) {
+            if(!$params[$key] && !$valueFromConfig) {
+                // Бросать исключение или все же возвращать bool? С одной стороны - исключение информативнее, с другой - выбивается из логики функции. Для нее штатна проверка
+                // и следовательно логичнее вернуть FALSE и все.
+                throw new \Exception("Не передан параметр с ключом $key шаблона $this->templateName", 415);
+            }
+        }
 
+        return true;
     }
 
     private function getHeader()
