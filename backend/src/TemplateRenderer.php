@@ -22,6 +22,8 @@ class TemplateRenderer
 
     private $templateName;
 
+    private $pageContent;
+
 //    TODO: описать файл с шаблонами и необходимыми параметрами, там же и алиасы можно описать
     /**
      * TemplateRenderer constructor.
@@ -60,7 +62,7 @@ class TemplateRenderer
         $this->getHeader();
         $this->getTemplate();
         $this->getFooter();
-        $pageContent = ob_get_contents();
+        $this->pageContent = ob_get_contents();
         ob_end_clean();
 
 
