@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MindNotes</title>
+    <style>
+        .menu {
+            margin: 0 20px;
+            border: 1px black solid;
+        }
+        .menu_link {
+            display: inline;
+        }
+        .menu_link > a {
+            text-decoration: none;
+            padding: 10px;
+            color: white;
+            background-color: cornflowerblue;
+            border: 1px solid whitesmoke;
+        }
+
+        .thought_list>.row {
+            display: flex;
+        }
+        .thought_card {
+            cursor: pointer;
+            margin: 10px;
+            box-sizing: border-box;
+            display: inline-block;
+            border: 1px solid gray;
+            padding: 10px;
+        }
+        .thought_card:hover{
+            background-color: rgba(221, 22, 150, 0.5);
+        }
+        .thought_card .tag {
+            display: inline-block;
+            background-color: lightgray;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .tag_list ul{
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<nav class="menu">
+    <ul>
+        <li class="menu_link"><a href="#">Список мыслей</a></li>
+        <li class="menu_link"><a href="#">Список тегов</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Список сырых мыслей</h1>
+    <div class="thought_list">
+        <div class="row">
+            <div class="thought_card" onclick="showDetailPage('22')">
+                <div class="header">
+                    <span class="datetime"></span>
+                    <h2>Заголовок мысли</h2>
+                </div>
+                <div class="tag_list">
+                    <ul>
+                        <li class="tag">Тег 1</li>
+                        <li class="tag">Тег 2</li>
+                    </ul>
+                </div>
+                <div class="preview_text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias aliquid delectus eius explicabo
+                    hic, libero nisi quae quam quod rerum soluta suscipit voluptas. Doloremque excepturi iure laborum
+                    necessitatibus neque officiis optio quidem ratione vitae voluptatibus? A alias atque eveniet fugit
+                    harum impedit iste laboriosam, non quaerat sunt temporibus vel?
+                </div>
+            </div>
+            <div class="thought_card"  onclick="showDetailPage('22')">
+                <div class="header">
+                    <span class="datetime"></span>
+                    <h2>Заголовок мысли</h2>
+                </div>
+                <div class="tag_list">
+                    <ul>
+                        <li class="tag">Тег 1</li>
+                        <li class="tag">Тег 2</li>
+                    </ul>
+                </div>
+                <div class="preview_text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias aliquid delectus eius explicabo hic, libero nisi quae quam quod rerum soluta suscipit voluptas. Doloremque excepturi iure laborum necessitatibus neque officiis optio quidem ratione vitae voluptatibus? A alias atque eveniet fugit harum impedit iste laboriosam, non quaerat sunt temporibus vel?
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="thought_card" onclick="showDetailPage('22')">
+                <div class="header">
+                    <span class="datetime"></span>
+                    <h2>Заголовок мысли</h2>
+                </div>
+                <div class="tag_list">
+                    <ul>
+                        <li class="tag">Тег 1</li>
+                        <li class="tag">Тег 2</li>
+                    </ul>
+                </div>
+                <div class="preview_text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias aliquid delectus eius explicabo hic, libero nisi quae quam quod rerum soluta suscipit voluptas. Doloremque excepturi iure laborum necessitatibus neque officiis optio quidem ratione vitae voluptatibus? A alias atque eveniet fugit harum impedit iste laboriosam, non quaerat sunt temporibus vel?
+                </div>
+            </div>
+            <div class="thought_card" onclick="showDetailPage('22')">
+                <div class="header">
+                    <span class="datetime"></span>
+                    <h2>Заголовок мысли</h2>
+                </div>
+                <div class="tag_list">
+                    <ul>
+                        <li class="tag">Тег 1</li>
+                        <li class="tag">Тег 2</li>
+                    </ul>
+                </div>
+                <div class="preview_text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias aliquid delectus eius explicabo hic, libero nisi quae quam quod rerum soluta suscipit voluptas. Doloremque excepturi iure laborum necessitatibus neque officiis optio quidem ratione vitae voluptatibus? A alias atque eveniet fugit harum impedit iste laboriosam, non quaerat sunt temporibus vel?
+                </div>
+            </div>
+            <div class="thought_card" onclick="showDetailPage('22')">
+                <div class="header">
+                    <span class="datetime"></span>
+                    <h2>Заголовок мысли</h2>
+                </div>
+                <div class="tag_list">
+                    <ul>
+                        <li class="tag">Тег 1</li>
+                        <li class="tag">Тег 2</li>
+                    </ul>
+                </div>
+                <div class="preview_text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias aliquid delectus eius explicabo hic, libero nisi quae quam quod rerum soluta suscipit voluptas. Doloremque excepturi iure laborum necessitatibus neque officiis optio quidem ratione vitae voluptatibus? A alias atque eveniet fugit harum impedit iste laboriosam, non quaerat sunt temporibus vel?
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+</footer>
+<script>
+    function showDetailPage(href) {
+        location.href = href;
+    }
+</script>
+</body>
+</html>
