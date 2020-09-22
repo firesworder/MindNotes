@@ -4,3 +4,7 @@ main_page:
   params:
     title: 'Главная страница'
   path: '/templates/main_page/template.php'
+
+thought_list:
+  params:
+  path:
