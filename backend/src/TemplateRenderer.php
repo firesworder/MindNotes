@@ -24,6 +24,8 @@ class TemplateRenderer
 
     private $pageContent;
 
+    private $pageDOM;
+
 //    TODO: описать файл с шаблонами и необходимыми параметрами, там же и алиасы можно описать
     /**
      * TemplateRenderer constructor.
@@ -64,6 +66,9 @@ class TemplateRenderer
         $this->getFooter();
         $this->pageContent = ob_get_contents();
         ob_end_clean();
+
+        $this->pageDOM = new \DOMDocument();
+        $this->pageDOM->loadHTML($this->pageContent);
 
         $this->replaceVariableStubs();
 
