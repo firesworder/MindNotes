@@ -46,7 +46,7 @@ class TemplateRenderer
         $this->templateParams = $currentTemplateConfig['params'];
 
         // проверяем, что переданы нужные параметры для отрисовки шаблона
-        if($this->isParamsValid($params)) {
+        if ((bool)$this->templateParams && $this->isParamsValid($params)) {
             foreach ($this->templateParams as $key => $valueFromConfig) {
                 $this->templateParams[$key] = $params[$key] ? $params[$key] : $valueFromConfig;
             }
@@ -82,6 +82,8 @@ class TemplateRenderer
      */
     private function isParamsValid(array $params): bool
     {
+        if (!$this->templateParams) return true;
+
         foreach($this->templateParams as $key => $valueFromConfig) {
             if(!$params[$key] && !$valueFromConfig) {
                 // Бросать исключение или все же возвращать bool? С одной стороны - исключение информативнее, с другой - выбивается из логики функции. Для нее штатна проверка
@@ -113,6 +115,8 @@ class TemplateRenderer
      */
     private function replaceVariableStubs()
     {
+        if (!$this->templateParams) return true;
+
         foreach($this->templateParams as $paramName => $value) {
             // Пока использую str_replace как самый быстрый. Если постоянно будет проблема рода
             // {{title}, {{ title }}, {{ title}} - придется перейти на preg_replace. Или не косячить хд
