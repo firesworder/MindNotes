@@ -71,7 +71,7 @@ class TemplateRenderer
         ob_end_clean();
 
         $this->pageDOM = new \DOMDocument();
-        $this->pageDOM->loadHTML($this->pageContent);
+        @$this->pageDOM->loadHTML($this->pageContent);
 
         $this->replaceVariableStubs();
 
