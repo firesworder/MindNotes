@@ -24,6 +24,9 @@ class TemplateRenderer
 
     private $pageContent;
 
+    /**
+     * @var \DOMDocument
+     */
     private $pageDOM;
 
 //    TODO: описать файл с шаблонами и необходимыми параметрами, там же и алиасы можно описать
