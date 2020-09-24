@@ -2,14 +2,15 @@
 
 
 namespace App\Controller;
+use App\EntityManagerContainer;
 use Doctrine\ORM\EntityManager;
 
 class AbstractController
 {
-    protected $entityManager;
+    protected EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct()
     {
-        $this->entityManager = $entityManager;
+        $this->entityManager = EntityManagerContainer::getEntityManager();
     }
 }
