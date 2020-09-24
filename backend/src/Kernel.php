@@ -66,7 +66,7 @@ class Kernel
         if($route) {
             $controller = $this->getController($route['controller']);
             $methodName = (string) $route['method'];
-            $controller->$methodName();
+            $controller->$methodName($request);
         } else {
             echo $this->getVueHtmlResource();
         }
