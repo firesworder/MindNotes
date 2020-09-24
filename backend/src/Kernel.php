@@ -3,36 +3,58 @@
 
 namespace App;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Loader\YamlFileLoader;
-use Symfony\Component\Routing\Matcher\UrlMatcher;
-use Symfony\Component\Routing\RequestContext;
-use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Yaml\Yaml;
 
+// TODO: добавить класс Route для большего ООП
 
 class Kernel
 {
-    const CONFIG_DIR = '/config/';
-    const ROUTES_FILENAME = 'routes.yaml';
+    const ROUTES_FILEPATH = '/config/routes.yaml';
+    const VUE_HTML_RESOURCE = '/resources/index.html';
 
-    /**
-     * @var RouteCollection
-     */
     private $routes;
 
     public function __construct()
     {
-        $this->getRoutes();
+        $this->routes = YAML::parseFile(getenv('PROJECT_DIR') . self::ROUTES_FILEPATH);
     }
 
-    private function getRoutes()
+    /**
+     * @param string $requestedUrl
+     * @return array|null
+     */
+    private function findApiRoute(string $requestedUrl)
     {
-        $fileLocator = new FileLocator(getenv('PROJECT_DIR') . self::CONFIG_DIR);
-        $yamlLoader = new YamlFileLoader($fileLocator);
-        $this->routes = $yamlLoader->load(self::ROUTES_FILENAME);
+        foreach($this->routes as $route) {
+            if($route['path'] === $requestedUrl ) {
+                return $route;
+            }
+        }
 
-        if(!$this->routes) {
-            throw new \Exception('Не удалось загрузить маршруты, проверь файл' . self::CONFIG_DIR . self::ROUTES_FILENAME);
+        return null;
+    }
+
+    /**
+     * Это будет браться из сборки
+     * TODO: текущая папка resources будет вне гита(если вообще будет существовать), т.к. это вообще файлы сборки -_-
+     * @return false|string
+     */
+    private function getVueHtmlResource()
+    {
+        return file_get_contents(getenv('PROJECT_DIR') . self::VUE_HTML_RESOURCE);
+    }
+
+    /**
+     * @param $controllerName
+     * @return mixed
+     */
+    private function getController($controllerName)
+    {
+        $controllerClassName = "App\\Controller\\$controllerName";
+        if(class_exists($controllerClassName)) {
+            return new $controllerClassName();
+        } else {
+            throw new \Exception('Не найден класс контроллера для маршрута');
         }
     }
 
@@ -40,13 +62,13 @@ class Kernel
     {
         $request = Request::createFromGlobals();
 
-        $context = new RequestContext();
-        $context->fromRequest($request);
-
-        $matcher = new UrlMatcher($this->routes, $context);
-        $route = $matcher->match($request->getPathInfo());
-
-        // Принимает $_POST, определяет uri, определяет метод(method) и направляет в соотвествующий метод.
-        // Соответствие методов и исполняемых классов - в yaml.
+        $route = $this->findApiRoute($request->getPathInfo());
+        if($route) {
+            $controller = $this->getController($route['controller']);
+            $methodName = (string) $route['method'];
+            $controller->$methodName();
+        } else {
+            echo $this->getVueHtmlResource();
+        }
     }
 }
