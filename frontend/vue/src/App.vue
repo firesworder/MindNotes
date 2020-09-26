@@ -6,6 +6,8 @@
 
 <script>
 
+import axios from 'axios';
+
 export default {
   name: 'App',
 
@@ -15,5 +17,10 @@ export default {
   data: () => ({
     //
   }),
+  mounted() {
+    // Пример-проверка работы axios(с прокси до api, в serve).
+    axios.post('/create/thought/', { hey: 'iamAxios!' })
+      .then((response) => { console.log(response); });
+  },
 };
 </script>
