@@ -1,0 +1,2 @@
+export const DEMO_CONST_FIRST = 'DEMO_CONST_FIRST';
+export const DEMO_CONST_SECOND = 'DEMO_CONST_SECOND';
