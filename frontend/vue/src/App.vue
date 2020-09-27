@@ -1,6 +1,10 @@
 <template>
   <v-app>
-    Hello!
+    <nav>
+      <router-link to="/vue-router-demo/">Перейти на работающее демо</router-link>
+      <router-link to="/some-lousy-link/">Перейти куда то в пустоту</router-link>
+    </nav>
+    <router-view></router-view>
   </v-app>
 </template>
 
