@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+// TODO: добавить в сеттеры - возвращение самого себя(объекта) для возможности формирования цепочек вызовов
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\Thought")
  * @ORM\Table(name="thoughts")
