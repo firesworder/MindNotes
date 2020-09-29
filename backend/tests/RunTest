@@ -1,0 +1,2 @@
+php tests/ServiceCreateThought.php
+php tests/ThoughtList.php
