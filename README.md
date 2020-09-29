@@ -13,3 +13,19 @@ Yt оставить только для задач, пока.
 Мыслям можно присвоить теги, создаваемые вручную, для последующей фильтрации этих
 мыслей.
 Upd1. Будущее программы - нейронная сеть с UI.
+
+Команды sql(вдруг пригодится):
+####Создание бд
+`CREATE DATABASE thoughts_app DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+`
+####ORM
+`vendor/bin/doctrine orm:schema-tool:create`
+
+`vendor/bin/doctrine orm:schema-tool:drop --force`
+
+`vendor/bin/doctrine orm:schema-tool:update --force`
+
+Заметки:
+Несмотря на то, что при прямом подключении к бд, вместо
+кириллицы видно ??? - при работе через ORM - русские символы и
+сохраняются и выводятся корректно. Нет повода для беспокойства.
