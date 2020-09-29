@@ -3,6 +3,6 @@ parameters:
   port:     3306
   driver:   pdo_mysql
   charset:  utf8
-  dbname:   test
+  dbname:   thoughts_app
   user:     root
   password: root
