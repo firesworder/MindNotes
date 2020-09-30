@@ -24,6 +24,7 @@ class GetThoughtList extends AbstractService
         foreach ($thoughtList as $thought) {
             $result[] = [
                 'id' => $thought->getId(),
+                'isProcessed' => $thought->isProcessed(),
                 'title' => $thought->getTitle(),
                 'body' => $thought->getBody(),
                 'tags' => [],
