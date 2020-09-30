@@ -116,4 +116,34 @@ class Thought
     {
         $this->tags = $tags;
     }
+
+    /**
+     * Устанавливает значения для соотв-их свойств сущности
+     * @param array $params [title, body, isProcessed, //tags]
+     */
+    public function setPropsByArray(array $params)
+    {
+        $this->isProcessed = $params['isProcessed'] ?? $this->isProcessed;
+        $this->title = $params['title'] ?? $this->title;
+        $this->body = $params['body'] ?? $this->body;
+        // TODO: по реализации тегов - раскомментировать(ну или удалить)
+//        $this->tags = $params['tags'] ?? $this->tags;
+    }
+
+    /**
+     * Возвращает массив со всеми (публичными) свойствами сущности
+     * @return array [id,title, body, isProcessed, //tags]
+     */
+    public function getPropsByArray()
+    {
+        return [
+            'id' => $this->id,
+            'isProcessed' => $this->isProcessed,
+            'title' => $this->title,
+            'body' => $this->body,
+            // TODO: по реализации тегов - раскомментировать(ну или удалить)
+            'tags' => [],
+//            'tags' => $this->tags,
+        ];
+    }
 }
