@@ -1,3 +1,4 @@
+php tests/ServiceDeleteThought.php
 php tests/ServiceEditThought.php
 php tests/ServiceGetThoughtList.php
 php tests/ServiceCreateThought.php
