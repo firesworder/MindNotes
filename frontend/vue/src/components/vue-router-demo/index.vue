@@ -8,7 +8,7 @@
 <script>
 
 import { mapState } from 'vuex';
-
+//empty
 export default {
   name: 'vue-router-demo',
   computed: {
