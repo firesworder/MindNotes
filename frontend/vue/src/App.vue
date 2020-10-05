@@ -1,10 +1,16 @@
 <template>
   <v-app>
-    <nav>
-      <router-link to="/vue-router-demo/">Перейти на работающее демо</router-link>
-      <router-link to="/some-lousy-link/">Перейти куда то в пустоту</router-link>
-    </nav>
-    <router-view></router-view>
+    <v-navigation-drawer v-model="drawer" app>
+
+    </v-navigation-drawer>
+
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-app-bar>
+    <v-main>
+
+    </v-main>
   </v-app>
 </template>
 
@@ -19,7 +25,7 @@ export default {
   },
 
   data: () => ({
-    //
+    drawer: null,
   }),
   mounted() {
     // Пример-проверка работы axios(с прокси до api, в serve).
